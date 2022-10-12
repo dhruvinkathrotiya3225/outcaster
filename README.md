@@ -1,16 +1,5 @@
-# outcaster3
 
-A new Flutter project.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot_20221012_182346](https://user-images.githubusercontent.com/113818392/195348953-9a18c8da-dc77-45a1-a520-15d2053c1971.jpg)
+![Screenshot_20221012_182352](https://user-images.githubusercontent.com/113818392/195348957-1416c160-b6fc-4f87-80c4-fddb0c54e3ff.jpg)
+![Screenshot_20221012_182352](https://user-images.githubusercontent.com/113818392/195349034-d20a5cc3-5ee3-4d54-a8e6-dfab9d26acaf.jpg)
