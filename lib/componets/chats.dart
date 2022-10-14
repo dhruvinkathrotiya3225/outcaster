@@ -1,11 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'global.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: chats(),
-    ),
+    chats(),
   );
 }
 
@@ -19,75 +19,94 @@ class chats extends StatefulWidget {
 class _chatsState extends State<chats> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, i) => ListTile(
-        onTap: () {
-          showModalBottomSheet(
-              context: context,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(50),
-                  topRight: Radius.circular(50),
+    return (Global.isIos == false)
+        ? MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: ListView.builder(
+              itemBuilder: (context, i) => ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  maxRadius: 30,
                 ),
+                title: Text(""),
+                subtitle: Text(""),
+                trailing: Text("12:00"),
               ),
-              builder: (context) {
-                return Container(
-                  height: 350,
-                  width: 300,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(50),
-                      topRight: Radius.circular(50),
-                    ),
-                  ),
-                  child: Column(
+              itemCount: 5,
+            ),
+          )
+        : Padding(
+            padding: const EdgeInsets.all(15),
+            child: Container(
+              child: Column(
+                children: [
+                  Row(
                     children: [
-                      const SizedBox(height: 30),
-                      const CircleAvatar(
-                        maxRadius: 50,
-                        backgroundColor: Colors.grey,
+                      SizedBox(height: 10),
+                      Text(
+                        "Chats",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 10),
-                      Text(""),
-                      const SizedBox(height: 5),
-                      Text(" +91"),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20.0, right: 20, top: 10, bottom: 10),
-                        child: SizedBox(
-                          height: 50,
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child: const Text("Send Messages"),
-                          ),
-                        ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  CupertinoTextField(),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Brodcast",
+                        style: TextStyle(color: CupertinoColors.activeBlue),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20.0, right: 20, top: 10, bottom: 10),
-                        child: SizedBox(
-                            height: 50,
-                            width: double.infinity,
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    Navigator.of(context).pop();
-                                  });
-                                },
-                                child: const Text("cancel"))),
+                      Spacer(),
+                      Text(
+                        "New Group",
+                        style: TextStyle(color: CupertinoColors.activeBlue),
                       )
                     ],
                   ),
-                );
-              });
-        },
-        leading: FlutterLogo(),
-        title: Text(""),
-        subtitle: Text(""),
-        trailing: Text("12:00"),
-      ),
-      itemCount: 5,
-    );
+                  Column(
+                    children: Global.allContactDetails
+                        .map(
+                          (e) => Column(
+                            children: [
+                              SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  SizedBox(height: 10),
+                                  CircleAvatar(
+                                    maxRadius: 30,
+                                    backgroundColor: CupertinoColors.systemGrey,
+                                  ),
+                                  SizedBox(width: 20),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text("${e["name"]}"),
+                                      Text(
+                                        "${e["des"]}",
+                                        style: TextStyle(
+                                            color: CupertinoColors.systemGrey),
+                                      ),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Text("${e["time"]}")
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ],
+              ),
+            ),
+          );
   }
 }
