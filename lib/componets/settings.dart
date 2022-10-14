@@ -73,7 +73,7 @@ class _settingsState extends State<settings> {
                                 ],
                               ),
                               Spacer(),
-                              Icon(CupertinoIcons.right_chevron)
+                              Icon(CupertinoIcons.right_chevron),
                             ],
                           ),
                         ],
